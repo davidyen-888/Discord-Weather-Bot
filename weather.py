@@ -1,8 +1,8 @@
 import discord
 
-color = 0xff6500
+color = 0x2F7FCC
 keyFeatures = {
-    'temp': 'Temperature',
+    'temp': 'Temperature in Celsius',
     'feels_like': 'Feels like',
     'temp_min': 'Minimum Temperature',
     'temp_max': 'Maximum Temperature'
@@ -20,7 +20,7 @@ def weatherMessage(data, location):
     location = location.title()
     message = discord.Embed(
         title=f'{location} Weather',
-        discription = f'Here is the weather data for {location}.',
+        description=f'Here is the weather data for {location}.',
         color=color
     )
     for key in data:
@@ -35,7 +35,7 @@ def weatherMessage(data, location):
 def errorMessage(location):
     location = location.title()
     return discord.Embed(
-        title='Error',
-        discription=f'There was an error retrieving weather data for {location}.',
+        title='Error!',
+        description=f'There was an error retrieving weather data for {location}.',
         color=color
     )
