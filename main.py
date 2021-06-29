@@ -1,25 +1,36 @@
+from weather import *
 import json
-from os import name
 import discord
-from discord.client import Client
+import requests
 
 with open('Python_project/Discord_Weather_Bot/secrets.json', 'r') as secrets_file:
     secrets = json.load(secrets_file)
 
-token = secrets['token']
-api_key = secrets['api_key']
-command_prefix = 'w.'
+TOKEN = secrets['token']
+API_KEY = secrets['api_key']
+commandPrefix = 'w.'
 client = discord.Client()
 
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity = discord.Activity(type = discord.ActivityType.listening, name = f'{command_prefix}[location]'))
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=f'{commandPrefix}[location]'))
+
 
 @client.event
+# If the message is not sent by the bot and it starts with "w.", then send back the weather info.
 async def on_message(message):
-    if message.author != client.user and message.content.startswith(command_prefix):
-        # Sends back the message
-        await message.channel.send(message.content)
+    if message.author != client.user and message.content.startswith(commandPrefix):
+        location = message.content.replace(commandPrefix, '').lower()
+        # Proper input of location
+        if len(location) >= 1:
+            # Get weather data
+            url = f'http://api.openweathermap.org/data/2.5/weather?q={location}&appid={API_KEY}&units=metric'
+            try:
+                data = json.loads(requests.get(url).content)
+                data = parseData(data)
+                await message.channel.send(embed=weatherMessage(data, location))
+            except KeyError:
+                await message.channel.send(embed=errorMessage(location))
 
-client.run(token)
+client.run(TOKEN)
