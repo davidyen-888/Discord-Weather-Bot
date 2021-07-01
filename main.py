@@ -2,13 +2,10 @@ from weather import *
 import json
 import discord
 import requests
+import os
 
-with open('secrets.json', 'r') as secrets_file:
-    secrets = json.load(secrets_file)
-
-
-TOKEN = secrets['token']
-API_KEY = secrets['api_key']
+TOKEN = os.environ.get('TOKEN')
+API_KEY = os.environ.get('API_KEY')
 commandPrefix = 'w.'
 client = discord.Client()
 
