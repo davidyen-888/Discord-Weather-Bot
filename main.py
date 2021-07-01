@@ -3,7 +3,7 @@ import json
 import discord
 import requests
 
-with open('Python_project/Discord_Weather_Bot/secrets.json', 'r') as secrets_file:
+with open('secrets.json', 'r') as secrets_file:
     secrets = json.load(secrets_file)
 
 
