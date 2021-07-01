@@ -36,6 +36,6 @@ def errorMessage(location):
     location = location.title()
     return discord.Embed(
         title='Error!',
-        description=f'There was an error retrieving weather data for {location}.',
+        description=f'There was an error retrieving weather data for {location}. Please input w.[location] to perform query.',
         color=color
     )
