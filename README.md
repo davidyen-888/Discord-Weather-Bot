@@ -48,7 +48,7 @@ Enable the Dynos.
 
 Test the bot!
 
-![](https://i.imgur.com/uZ7OLSB.gif)
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/61106644/124215941-a433d580-db27-11eb-9bdc-87e112f429bc.gif)
 
 
 The bot will now be online and ready to serve 24/7. If we commit on the remote repository, the bot will be updated and deployed automatically.
